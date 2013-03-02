@@ -6,16 +6,20 @@ comments: true
 categories: Github
 ---
 
-GitHub+[Octopress](http://octopress.org/)でブログを構築したときのメモ
+![Octopress title](/images/201303/octopress-title.png)
 
-![Octopress logo](/images/201303/octopress.png)
+GitHub+[Octopress](http://octopress.org/)でブログを構築したときのメモ。
 
-あらかじめ`ユーザ名.github.com`という名前のレポジトリを生成しておく。
-サイトのURLは`http://ユーザ名.github.com/`になる。
+今回は[Github Pages](http://pages.github.com/)の*User& Organization Pages*にブログを設置する。
+
+あらかじめ`アカウント名.github.com`という名前のレポジトリを生成しておく。
+サイトのURLは`http://アカウント名.github.com/`になる。
+`Ruby 1.9.3`が必要。
 
 ```bash
 $ git clone https://github.com/imathis/octopress.git tsujita.github.com
 $ cd tsujita.github.com
+$ rbenv global 1.9.3-p194
 $ gem install bundler
 $ rbenv rehash
 $ bundle install
@@ -42,7 +46,7 @@ $ git push -u origin source
 
 ```yml
 url: http://tsujita.github.com
-title: Githubでブログのテスト
+title: GitHubでブログのテスト
 subtitle: Octopressでおためしブログ
 author: tsujita
 simple_search: http://google.com/search
@@ -55,6 +59,9 @@ description:
 $ rake new_post['octopress-install']
 $ vi source/_posts/2013-03-03-octopress-install.markdown
 ```
+
+画像ファイルは`source/images`に月毎にディレクトリを作成して設置することにした。
+`rake generate`で`_deploy`以下にコピーされるので絶対パスで指定。
 
 書き終わったら生成＆デプロイ。
 
