@@ -26,11 +26,11 @@ $ rake generate
 $ rake deploy
 ```
 
-`rake generate`で`_deploy`以下に公開されるファイル群が生成されるようだ。
+`rake generate`で`_deploy`以下にサイトに公開されるファイルが生成されるようだ。
 `rake deploy`で`_deploy`がmasterブランチにpushされ、
-http://tsujita.github.com/から参照できるようになる。
+`http://tsujita.github.com/`から参照できるようになる。
 
-設定ファイルやエントリのソースはsourceブランチで管理するようなので別途pushしておく。
+設定ファイルやポストはsourceブランチで管理するようなので別途pushしておく。
 
 ```bash
 $ git add .
@@ -38,11 +38,22 @@ $ git commit -m '最初のコミット'
 $ git push -u origin source
 ```
 
-エントリを作成するコマンドが用意されている。
+設定は`_config.yml`で行う。
+
+```yml
+url: http://tsujita.github.com
+title: Githubでブログのテスト
+subtitle: Octopressでおためしブログ
+author: tsujita
+simple_search: http://google.com/search
+description:
+```
+
+ポストを作成するコマンドが用意されている。
 
 ```bash
-$ rake new_post['test']
-$ vi source/_posts/2013-03-03-test.markdown
+$ rake new_post['octopress-install']
+$ vi source/_posts/2013-03-03-octopress-install.markdown
 ```
 
 書き終わったら生成＆デプロイ。
