@@ -1,14 +1,19 @@
 ---
 layout: post
-title: "てすと投稿"
+title: "GitHub+Octopressでブログ構築"
 date: 2013-03-03 03:42
 comments: true
 categories: Github
 ---
 
-GitHub+[Octpress](http://octopress.org/)でブログ構築
+GitHub+[Octopress](http://octopress.org/)でブログを構築したときのメモ
 
-```
+![Octopress logo](/images/201303/octopress.png)
+
+あらかじめ`ユーザ名.github.com`という名前のレポジトリを生成しておく。
+サイトのURLは`http://ユーザ名.github.com/`になる。
+
+```bash
 $ git clone https://github.com/imathis/octopress.git tsujita.github.com
 $ cd tsujita.github.com
 $ gem install bundler
@@ -20,31 +25,36 @@ Enter the read/write url for your repository: git@github.com:tsujita/tsujita.git
 $ rake generate
 $ rake deploy
 ```
-_deploy以下がmasterブランチにコミットされる。
-これでhttp://tsujita.github.com/からブログが参照できるようになっているはず。
 
-Octpressのディレクトリ自体をsourceブランチに登録しておく。
-```
+`rake generate`で`_deploy`以下に公開されるファイル群が生成されるようだ。
+`rake deploy`で`_deploy`がmasterブランチにpushされ、
+http://tsujita.github.com/から参照できるようになる。
+
+設定ファイルやエントリのソースはsourceブランチで管理するようなので別途pushしておく。
+
+```bash
 $ git add .
 $ git commit -m '最初のコミット'
 $ git push -u origin source
 ```
 
 エントリを作成するコマンドが用意されている。
-```
+
+```bash
 $ rake new_post['test']
 $ vi source/_posts/2013-03-03-test.markdown
 ```
 
-書き終わったら記事を生成＆デプロイ。
-```
+書き終わったら生成＆デプロイ。
+
+```bash
 $ rake generate
 $ rake deploy
 ```
 
 ローカルでプレビューもできる。
-```
-$ rake generate
+
+```bash
 $ rake preview
 ```
 
