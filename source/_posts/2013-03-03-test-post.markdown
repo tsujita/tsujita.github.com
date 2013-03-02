@@ -1,0 +1,50 @@
+---
+layout: post
+title: "てすと投稿"
+date: 2013-03-03 03:42
+comments: true
+categories: Github
+---
+
+GitHub+[Octpress](http://octopress.org/)でブログ構築
+
+```
+$ git clone https://github.com/imathis/octopress.git tsujita.github.com
+$ cd tsujita.github.com
+$ gem install bundler
+$ rbenv rehash
+$ bundle install
+$ rake install
+$ rake setup_github_pages
+Enter the read/write url for your repository: git@github.com:tsujita/tsujita.github.com.git
+$ rake generate
+$ rake deploy
+```
+_deploy以下がmasterブランチにコミットされる。
+これでhttp://tsujita.github.com/からブログが参照できるようになっているはず。
+
+Octpressのディレクトリ自体をsourceブランチに登録しておく。
+```
+$ git add .
+$ git commit -m '最初のコミット'
+$ git push -u origin source
+```
+
+エントリを作成するコマンドが用意されている。
+```
+$ rake new_post['test']
+$ vi source/_posts/2013-03-03-test.markdown
+```
+
+書き終わったら記事を生成＆デプロイ。
+```
+$ rake generate
+$ rake deploy
+```
+
+ローカルでプレビューもできる。
+```
+$ rake generate
+$ rake preview
+```
+
