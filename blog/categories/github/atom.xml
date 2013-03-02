@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: github | GitHubでブログのテスト]]></title>
+  <link href="http://tsujita.github.com/blog/categories/github/atom.xml" rel="self"/>
+  <link href="http://tsujita.github.com/"/>
+  <updated>2013-03-03T08:51:25+09:00</updated>
+  <id>http://tsujita.github.com/</id>
+  <author>
+    <name><![CDATA[tsujita]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[GitHub+Octopressでブログ構築]]></title>
+    <link href="http://tsujita.github.com/blog/2013/03/03/octopress-install/"/>
+    <updated>2013-03-03T03:42:00+09:00</updated>
+    <id>http://tsujita.github.com/blog/2013/03/03/octopress-install</id>
+    <content type="html"><![CDATA[<p><img src="/images/201303/octopress-title.png" alt="Octopress title" /></p>
+
+<p>GitHub+<a href="http://octopress.org/">Octopress</a>でブログを構築したときのメモ。</p>
+
+<p>今回は<a href="http://pages.github.com/">Github Pages</a>の<em>User&amp; Organization Pages</em>にブログを設置する。</p>
+
+<p>あらかじめ<code>アカウント名.github.com</code>という名前のレポジトリを生成しておく。
+サイトのURLは<code>http://アカウント名.github.com/</code>になる。
+<code>Ruby 1.9.3</code>が必要。</p>
+
+<p><code>bash
+$ git clone https://github.com/imathis/octopress.git tsujita.github.com
+$ cd tsujita.github.com
+$ rbenv global 1.9.3-p194
+$ gem install bundler
+$ rbenv rehash
+$ bundle install
+$ rake install
+$ rake setup_github_pages
+Enter the read/write url for your repository: git@github.com:tsujita/tsujita.github.com.git
+$ rake generate
+$ rake deploy
+</code></p>
+
+<p><code>rake generate</code>で<code>_deploy</code>以下にサイトに公開されるファイルが生成されるようだ。
+<code>rake deploy</code>で<code>_deploy</code>がmasterブランチにpushされ、
+<a href="http://tsujita.github.com/">http://tsujita.github.com/</a>から参照できるようになる。</p>
+
+<p>設定ファイルやポストはsourceブランチで管理するようなので別途pushしておく。</p>
+
+<p><code>bash
+$ git add .
+$ git commit -m '最初のコミット'
+$ git push -u origin source
+</code></p>
+
+<p>設定は<code>_config.yml</code>で行う。</p>
+
+<p><code>yml
+url: http://tsujita.github.com
+title: GitHubでブログのテスト
+subtitle: Octopressでおためしブログ
+author: tsujita
+simple_search: http://google.com/search
+description:
+</code></p>
+
+<p>ポストを作成するコマンドが用意されている。</p>
+
+<p><code>bash
+$ rake new_post['octopress-install']
+$ vi source/_posts/2013-03-03-octopress-install.markdown
+</code></p>
+
+<p>画像ファイルは<code>source/images</code>に月毎にディレクトリを作成して設置することにした。
+<code>rake generate</code>で<code>_deploy</code>以下にコピーされるので絶対パスで指定。</p>
+
+<p>書き終わったら生成＆デプロイ。</p>
+
+<p><code>bash
+$ rake generate
+$ rake deploy
+</code></p>
+
+<p>ローカルでプレビューもできる。</p>
+
+<p><code>bash
+$ rake preview
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>
