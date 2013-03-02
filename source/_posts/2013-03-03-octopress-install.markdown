@@ -28,7 +28,7 @@ $ rake deploy
 
 `rake generate`で`_deploy`以下にサイトに公開されるファイルが生成されるようだ。
 `rake deploy`で`_deploy`がmasterブランチにpushされ、
-`http://tsujita.github.com/`から参照できるようになる。
+<http://tsujita.github.com/>から参照できるようになる。
 
 設定ファイルやポストはsourceブランチで管理するようなので別途pushしておく。
 
